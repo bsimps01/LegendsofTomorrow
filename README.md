@@ -11,6 +11,7 @@ Find someone who has all the hype but is under the radar? Post about the future 
 1. Change information within each Legend info using UPDATE
 1. Find a Legend you don't like? use the DELETE method to change that
 
+https://legends-of-tomorrowapi.herokuapp.com/legends for the live site
 
 ```javascript
 {
