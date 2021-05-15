@@ -1,35 +1,20 @@
+//require("dotenv");
 const express = require('express')
-const app = express()
 const port = 3000
-const expressValidator = require('express-validator')
+//const expressValidator = require('express-validator')
+const app = express()
+const legend = require("./controllers/index.js");
 
+require('./data/Legends_db.js');
 
-require('./data/Legends_db.js')
-
-
-//Middleware
-const exphbs  = require('express-handlebars');
-app.use(express.static('public'));
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
-
-
-app.use(express.json);
-app.use(express.urlencoded());
-app.use(expressValidator());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+//app.use(expressValidator());
 
 //controllers
-require('./controllers/legends.js')(app)
-
-
-//routes
-app.get('/', (req, res) => {
-  res.send('home')
-});
-
-app.get('/posts/new', (req, res) => {
-  res.render('new-legends')
-}); 
+require('./controllers/legends.js');
+//route
+app.use(legend)
 
 // Start Server
 app.listen(port, () => {
